@@ -23,6 +23,9 @@ Conchboards is a soundboard platform built for the same reason as its intended u
     * Digital Ocean
     * Nginx
     * PM2
+* Other Tools:
+    * Xcode
+    * VSCode
 
 ## API
 * [API Documentation](api-docs/README.md)
