@@ -10,19 +10,19 @@ Conchboards is a soundboard platform built for the same reason as its intended u
 
 ## Technologies
 * Web App:
-..* Angular 6 + Universal
-..* TypeScript
-..* HTML5, CSS3, Bootstrap
+    * Angular 6 + Universal
+    * TypeScript
+    * HTML5, CSS3, Bootstrap
 * REST API & Server:
-..* NodeJS
-..* MongoDB
+    * NodeJS
+    * MongoDB
 * iOS App:
-..* Swift 4
-..* Objective-C
+    * Swift 4
+    * Objective-C
 * Hosted Using:
-..* Digital Ocean
-..* Nginx
-..* PM2
+    * Digital Ocean
+    * Nginx
+    * PM2
 
 ## API
 * [API Documentation](api-docs/README.md)
