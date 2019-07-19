@@ -1,5 +1,5 @@
 # Conchboards
-Conchboards is a soundboard platform built for the same reason as its intended use; for fun!
+Conchboards is a platform that allows users to create, share and discover soundboards. Built for fun!
 
 ## Features
 * Full-stack application including a fully documented [REST API](api-docs/README.md) used by the Web App and iOS App
