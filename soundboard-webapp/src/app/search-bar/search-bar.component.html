@@ -1,0 +1,11 @@
+<div class="input-group mb-3">
+  <input type="text" class="form-control" placeholder="Find by name..." #searchInput (keyup.enter)="search(searchInput.value)">
+  <div class="input-group-append">
+    <button class="btn btn-outline-secondary" type="button" (click)="search(searchInput.value)">
+      <i class="fa fa-search" *ngIf="!searching"></i> 
+      <div class="dark-theme">
+        <mat-spinner [diameter]="30" *ngIf="searching"></mat-spinner> 
+      </div>
+    </button>
+  </div>
+</div>

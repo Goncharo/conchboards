@@ -1,0 +1,11 @@
+<div class="col-auto">
+    <div class="card mx-auto my-2" style="min-width: 20em; max-width: 20rem;">
+        <a [routerLink]="['/soundboards', _soundboard.id]"></a>
+        <img class="card-img-top" [src]="config.apiUrl + '/static/' + _soundboard.image" alt="Card image cap">
+        <div class="card-body text-center">
+          <h5 class="card-title">{{_soundboard.name}}</h5>
+          <p class="card-text"><i class="fa fa-heart" aria-hidden="true"></i> {{_soundboard.favourites}} Favourites</p>
+          <p class="card-text"><small class="text-muted">Created by {{_soundboard.creatorUsername}} on {{_soundboard.createdAt | date:'yyyy-MM-dd'}}</small></p>
+        </div>
+    </div>
+</div>

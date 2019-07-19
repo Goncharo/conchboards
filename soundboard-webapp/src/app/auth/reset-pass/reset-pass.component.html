@@ -1,0 +1,26 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text=center">Change Password</h1>
+      <hr>
+      <form [formGroup]="resetForm" (ngSubmit)="onResetPassword()">
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" formControlName="password">
+        </div>
+        <span class="help-block" *ngIf="!resetForm.get('password').valid && resetForm.get('password').touched">Password must be alphanumeric and have 8-40 characters.</span>
+        <!-- Password Conf -->
+        <div class="form-group">
+          <label for="passwordConf">Confirm Password</label>
+          <input type="password" name="passwordConf" id="passwordConf" class="form-control" formControlName="passwordConf">
+        </div>
+        <span class="help-block" *ngIf="!resetForm.get('passwordConf').valid && resetForm.get('passwordConf').touched">Passwords do not match.</span>
+        <hr>
+        <button class="btn btn-primary btn-block" [disabled]="!resetForm.valid">
+          <i class="fa fa-check fa-2x" *ngIf="!loading"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="loading"></i><div>Change Password</div>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

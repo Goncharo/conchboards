@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center">Sign In</h1>
+      <hr>
+      <form [formGroup]="signinForm" (ngSubmit)="onSignin()">
+
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" name="email" id="email" class="form-control" formControlName="email">
+        </div>
+
+        <!-- Password -->
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" formControlName="password">
+        </div>
+        <div align="center">
+          <a [routerLink]="['/forgotpass']">Forgot Password?</a>
+        </div>
+        
+        <hr>
+
+        <button class="btn btn-primary btn-block" [disabled]="!signinForm.valid">
+          <i class="fa fa-sign-in fa-2x" *ngIf="!loading"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="loading"></i><div>Sign In</div>
+        </button>
+        
+      </form>
+    </div>
+  </div>
+</div>

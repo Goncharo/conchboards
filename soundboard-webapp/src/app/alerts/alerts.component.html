@@ -1,0 +1,9 @@
+<span *ngFor="let alert of alerts; let i = index">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+          <ngb-alert [type]="alert.type" (close)="closeAlert(i)">{{ alert.message }}</ngb-alert>
+      </div>
+    </div>
+  </div>
+</span>

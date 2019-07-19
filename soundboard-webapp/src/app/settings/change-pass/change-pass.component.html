@@ -1,0 +1,32 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h3>Change Password</h3>
+        <hr>
+        <form [formGroup]="changePassForm" (ngSubmit)="onChangePassword()">
+          <!-- Current Password -->
+          <div class="form-group">
+              <label for="currentPassword">Current Password</label>
+              <input type="password" name="currentPassword" id="currentPassword" class="form-control" formControlName="currentPassword">
+          </div>
+          <span class="help-block" *ngIf="!changePassForm.get('currentPassword').valid && changePassForm.get('currentPassword').touched">Must provide current password.</span>
+          <!-- Password -->
+          <div class="form-group">
+              <label for="password">New Password</label>
+              <input type="password" name="password" id="password" class="form-control" formControlName="password">
+          </div>
+          <span class="help-block" *ngIf="!changePassForm.get('password').valid && changePassForm.get('password').touched">Password must be alphanumeric and have 8-40 characters.</span>
+          <!-- Password Conf -->
+          <div class="form-group">
+            <label for="passwordConf">Confirm New Password</label>
+            <input type="password" name="passwordConf" id="passwordConf" class="form-control" formControlName="passwordConf">
+          </div>
+          <span class="help-block" *ngIf="!changePassForm.get('passwordConf').valid && changePassForm.get('passwordConf').touched">Passwords do not match.</span>
+          <hr>
+          <button class="btn btn-primary btn-block" [disabled]="!changePassForm.valid">
+            <i class="fa fa-check fa-2x" *ngIf="!loading"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="loading"></i><div>Change Password</div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>

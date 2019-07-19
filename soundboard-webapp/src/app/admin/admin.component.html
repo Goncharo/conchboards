@@ -1,0 +1,64 @@
+<div infiniteScroll (scrolled)="onScroll()">
+  <div class="container">
+      <div class="row">
+          <div class="col-12">
+
+              <h1 class="text-center">Admin Console</h1>
+              <p class="text-center">With great power comes great responsibility</p>
+              <hr>
+
+              <h3>Send Email to All Users</h3>
+              <form [formGroup]="sendMailForm" (ngSubmit)="onSendMail()">
+    
+                  <!-- Subject -->
+                  <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" name="subject" id="subject" class="form-control" formControlName="subject">
+                  </div>
+          
+                  <!-- HTML Body -->
+                  <div class="form-group">
+                      <label for="body">HTML Body</label>
+                      <textarea class="form-control" name="body" id="body" formControlName="body" rows="8"></textarea>
+                  </div>
+          
+                  <button class="btn btn-primary btn-block" [disabled]="!sendMailForm.valid">
+                    <i class="fa fa-envelope fa-2x" *ngIf="!sending"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="sending"></i><div>Send</div>
+                  </button>
+                  
+                </form>
+              <hr>
+
+              <h3>Top Malicious Users</h3>
+              <div *ngFor="let user of maliciousUsers; let i = index">
+                  <button type="button" class="btn btn-outline-primary btn-block" (click)="isCollapsedToggles[i] = !isCollapsedToggles[i]"
+                  [attr.aria-expanded]="!isCollapsed" aria-controls="i">
+                    {{user.userID}}
+                  </button>
+                  <div id="i" [ngbCollapse]="isCollapsedToggles[i]">
+                      <div class="card">
+                        <div class="card-body">
+                          <button type="button" class="btn btn-outline-dark" (click)="banUser(i)"><i class="fa fa-ban fa-2x"></i><div>(Un)ban User</div></button>
+                          <button type="button" class="btn btn-outline-dark" (click)="banhammerUser(i)"><i class="fa fa-gavel fa-2x"></i><div>Ban Hammer User</div></button>
+                          <i class="fa fa-spinner fa-spin fa-2x" *ngIf="loadingStates[i]"></i>
+                        </div>
+                      </div>
+                      <div *ngFor="let soundboard of user.soundboards" class="card">
+                        <div class="card-body">
+                          <strong>Soundboard Name:</strong> {{soundboard.name}} 
+                          <strong>Times Reported:</strong> {{soundboard.reportCount}}
+                          <button [routerLink]="['/soundboards',soundboard.id]"  type="button" class="btn btn-outline-dark"><i class="fa fa-eye fa-2x"></i><div>View Board</div></button>
+                        </div>
+                      </div>
+                  </div>
+              </div>
+              
+
+              <div class="dark-theme" align="center">
+                  <mat-spinner *ngIf="fetching"></mat-spinner>
+              </div>
+              <hr>
+          </div>
+      </div>
+    </div>
+</div>

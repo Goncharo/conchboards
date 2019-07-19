@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h1 class="text-center">Forgot Password</h1>
+      <p class="text-center">Please enter your account's email below, and a link to reset your password will be mailed to you.</p>
+      <hr>
+      <form [formGroup]="forgotPassForm" (ngSubmit)="onForgotPass()">
+        <!-- Email -->
+        <div class="form-group">
+          <label for="email">Your Account Email</label>
+          <input type="email" name="email" id="email" class="form-control" formControlName="email">
+        </div>
+        <div align="center">
+            <re-captcha
+            formControlName="captcha"
+            name="captcha"
+            id="captcha"
+            [siteKey]="config.reCaptchaPublicKey"
+          ></re-captcha>
+        </div>
+        <hr>
+        <button class="btn btn-primary btn-block" [disabled]="!forgotPassForm.valid">
+          <i class="fa fa-envelope fa-2x" *ngIf="!loading"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="loading"></i><div>Send Link</div>
+        </button>
+      </form>
+    </div>
+  </div>
+</div>

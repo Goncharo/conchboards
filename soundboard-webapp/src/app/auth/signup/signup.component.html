@@ -1,0 +1,58 @@
+<div class="container">
+    <div class="row">
+      <div class="col-12">
+        <h1 class="text-center">Register</h1>
+        <p class="text-center">Create an account in order to be able to favourite sounboards, as well as create and share your own!</p>
+        <hr>
+        <form [formGroup]="signupForm" (ngSubmit)="onSignup()">
+          <!-- Username -->
+          <div class="form-group">
+            <label for="username">Username <i class="fa fa-spinner fa-spin" *ngIf="checking"></i></label>
+            <input type="text" name="username" id="username" class="form-control" formControlName="username">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('username').valid && signupForm.get('username').touched && !signupForm.get('username').hasError('userExists')">Username must be a maximum of 15 characters, and can only contain letters, numbers, and an underscore.</span>
+          <span class="help-block" *ngIf="signupForm.get('username').hasError('userExists')">Username already exists!</span>
+          <!-- Email -->
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" class="form-control" formControlName="email">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('email').valid && signupForm.get('email').touched">Email address is not valid.</span>
+          <!-- Password -->
+          <div class="form-group">
+              <label for="password">Password</label>
+              <input type="password" name="password" id="password" class="form-control" formControlName="password">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('password').valid && signupForm.get('password').touched">Password must be alphanumeric and have 8-40 characters.</span>
+          <!-- Password Conf -->
+          <div class="form-group">
+            <label for="passwordConf">Confirm Password</label>
+            <input type="password" name="passwordConf" id="passwordConf" class="form-control" formControlName="passwordConf">
+          </div>
+          <span class="help-block" *ngIf="!signupForm.get('passwordConf').valid && signupForm.get('passwordConf').touched">Passwords do not match.</span>
+          <!-- Terms -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="termsCheck" formControlName="terms">
+            <label class="form-check-label" for="termsCheck">
+              I have read and accepted the <a [routerLink]="['/terms']" target="_blank">Terms of Service</a>
+            </label>
+          </div>
+          <p></p>
+          <div align="center">
+              <re-captcha
+              class="form-control"
+              formControlName="captcha"
+              name="captcha"
+              id="captcha"
+              [siteKey]="config.reCaptchaPublicKey"
+            ></re-captcha>
+          </div>
+        
+          <hr>
+          <button class="btn btn-primary btn-block" [disabled]="!signupForm.valid">
+            <i class="fa fa-user-plus fa-2x" *ngIf="!loading"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="loading"></i><div>Register</div>
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>

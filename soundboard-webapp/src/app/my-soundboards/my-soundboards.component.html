@@ -1,0 +1,38 @@
+<div infiniteScroll (scrolled)="onScroll()">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <ngb-tabset>
+            <ngb-tab>
+              <ng-template ngbTabTitle><div (click)="createdTabClicked($event)"><i class="fa fa-user-circle"></i> Created</div></ng-template>
+              <ng-template ngbTabContent>
+                <div class="container-fluid">
+                  <div class="row justify-content-center">
+                    <h3 *ngIf="_createdSoundboards.length === 0 && !fetching">You have not created any soundboards.</h3>
+                    <app-soundboard-list-item *ngFor="let soundboard of _createdSoundboards" [soundboard]="soundboard"></app-soundboard-list-item>
+                  </div>
+                </div>
+                <div class="dark-theme" align="center">
+                  <mat-spinner *ngIf="fetching"></mat-spinner>
+                </div>
+              </ng-template>
+            </ngb-tab>
+            <ngb-tab>
+              <ng-template ngbTabTitle><div (click)="favouritedTabClicked($event)"><i class="fa fa-heart" aria-hidden="true"></i> Favourited</div></ng-template>
+              <ng-template ngbTabContent>
+                <div class="container-fluid">
+                  <div class="row justify-content-center">
+                    <h3 *ngIf="_favouritedSoundboards.length === 0 && !fetching">You have not favourited any soundboards.</h3>
+                    <app-soundboard-list-item *ngFor="let soundboard of _favouritedSoundboards" [soundboard]="soundboard"></app-soundboard-list-item>
+                  </div>
+                </div>
+                <div class="dark-theme" align="center">
+                  <mat-spinner *ngIf="fetching"></mat-spinner>
+                </div>
+              </ng-template>
+            </ngb-tab>
+          </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>

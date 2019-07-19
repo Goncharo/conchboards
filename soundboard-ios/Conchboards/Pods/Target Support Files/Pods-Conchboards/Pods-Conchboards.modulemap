@@ -1,0 +1,6 @@
+framework module Pods_Conchboards {
+  umbrella header "Pods-Conchboards-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,76 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+
+      <!--> Confirmation modal template </!-->
+      <ng-template #modal let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <h4 class="modal-title">Are you sure you want to leave? All changes will be discarded.</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="c('Leave')">Leave Page</button>
+            <button type="button" class="btn btn-outline-dark" (click)="c('Cancel')">Cancel</button>
+          </div>
+      </ng-template>
+
+      <h1 class="text-center">Create a Soundboard!</h1>
+      <p class="text-center">Create and upload a soundboard using the form below and please take note of the following:</p>
+      <ul class="list-inline text-center">
+        <li>Files must be < 2.5mb in size</li>
+        <li>Only the following image formats are supported: .jpg, .jpeg, and .png</li>
+        <li>Only the following audio formats are supported: .mp3, .wav, .mpga, .aif, .aiff</li>
+        <li>Maximum of 12 sounds per board</li>
+      </ul>
+
+      <form [formGroup]="createForm" (ngSubmit)="create()">
+
+        <!--> Name </!-->
+        <div class="form-group">
+          <label for="name">Soundboard Name</label>
+          <input type="text" name="name" id= "name" class="form-control" formControlName="name">
+        </div>
+
+        <!--> Image </!-->
+        <div class="form-group">
+          <label for="name">Soundboard Image</label>
+          <input type="file" name="name" id= "name" class="form-control" accept=".jpg, .png, .jpeg" (change)="handleImageFile($event.target)">
+        </div>
+        
+        <!--> Sounds </!-->
+        <div formArrayName="sounds">
+          <div *ngFor="let sound of sounds.controls; let i=index" [formGroupName]="i" class="form-row">
+              <div class="form-group col-5">
+                  <label for="soundName">Sound Name</label>
+                  <input type="text" name="soundName" id="soundName" class="form-control" formControlName="soundName">
+              </div>
+              <div class="form-group col-5">
+                  <label for="soundFile">Sound File</label>
+                  <input type="file" name="soundFile" [id]="i" class="form-control" formControlName="soundFile" accept=".mp3, .wav, .aiff, .mpga, .aif" (change)="handleSoundFile($event.target)">
+              </div>
+              <div class="form-group col-2">
+                  <label for="deleteButton">&nbsp;</label>
+                <button type="button" name="deleteButton" class="btn btn-danger form-control" (click)="deleteSound(i)"><i class="fa fa-trash fa-2x"></i></button>
+              </div>
+          </div>
+        </div>
+        <button type="button" class="btn btn-light btn-block" (click)="addSound()" [disabled]="uploading || !canAdd()"><i class="fa fa-plus fa-2x"></i><div>Add Sound</div></button>
+        <p *ngIf="!canAdd()">Maximum of {{_soundsLimit}} sound reached!</p>
+        <hr> 
+        <div></div>
+        <p></p>
+        <button class="btn btn-primary btn-block" type="button" [disabled]="!createForm.valid || uploading || !allSoundsAssigned()" (click)="onPreviewSoundboard()"><i class="fa fa-eye fa-2x"></i><div>Preview</div></button>
+        <p></p>
+        <button class="btn btn-primary btn-block" type="submit" [disabled]="!createForm.valid || uploading || !allSoundsAssigned()">
+          <i class="fa fa-upload fa-2x" *ngIf="!loading"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="loading"></i><div>Upload</div>
+        </button>
+      </form>
+      <hr>
+
+      <p *ngIf="uploading"><ngb-progressbar type="success" [value]="percentDone" [striped]="true" [animated]="true"><i>Uploading...</i></ngb-progressbar></p>
+
+    </div>
+  </div>
+</div>

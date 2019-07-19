@@ -1,0 +1,39 @@
+<div infiniteScroll (scrolled)="onScroll()">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <app-search-bar (onSearch)="onSearch($event)" [searching]="searching"></app-search-bar>
+        <ngb-tabset>
+          <ngb-tab>
+            <ng-template ngbTabTitle><div (click)="hottestTabClicked()"><i class="fa fa-fire"></i> Hottest</div></ng-template>
+            <ng-template ngbTabContent>
+              <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <h3 *ngIf="hottestSoundboards.length === 0 && !fetching && !searching">No soundboards found!</h3>
+                    <app-soundboard-list-item *ngFor="let soundboard of hottestSoundboards" [soundboard]="soundboard"></app-soundboard-list-item>
+                </div>
+              </div>
+              <div class="dark-theme" align="center">
+                <mat-spinner *ngIf="fetching"></mat-spinner>
+              </div>
+            </ng-template>
+          </ngb-tab>
+          <ngb-tab>
+            <ng-template ngbTabTitle><div (click)="newestTabClicked()"><i class="fa fa-exclamation" aria-hidden="true"></i> Newest</div></ng-template>
+            <ng-template ngbTabContent>
+              <div class="container-fluid">
+                <div class="row justify-content-center">
+                    <h3 *ngIf="newestSoundboards.length === 0 && !fetching && !searching">No soundboards found!</h3>
+                  <app-soundboard-list-item *ngFor="let soundboard of newestSoundboards" [soundboard]="soundboard"></app-soundboard-list-item>
+                </div>
+              </div>
+              <div class="dark-theme" align="center">
+                <mat-spinner *ngIf="fetching"></mat-spinner>
+              </div>
+            </ng-template>
+          </ngb-tab>
+        </ngb-tabset>
+      </div>
+    </div>
+  </div>
+</div>

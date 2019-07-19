@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark mb-4" id="main_nav">
+  <a class="navbar-brand" [routerLink]="['/']"><svg class="icon-2x"><use xlink:href="#icon-conch"></use></svg></a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" [attr.aria-expanded]="!isCollapsed" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent" [ngbCollapse]="isCollapsed">
+    <ul class="navbar-nav mr-auto text-center">
+      <li routerLinkActive="active" class="nav-item">
+        <a [routerLink]="['/soundboards']" class="nav-link"><i class="fa fa-play-circle"></i> Boards</a>
+      </li>
+      <span *ngIf="auth.isAuthenticated(); then authenticatedBlockLeft"></span>
+      <ng-template #authenticatedBlockLeft>
+        <li routerLinkActive="active" class="nav-item">
+          <a [routerLink]="['/mysoundboards']" class="nav-link"><i class="fa fa-user"></i> My Boards</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a [routerLink]="['/create']" class="nav-link"><i class="fa fa-plus"></i> Create a Board</a>
+        </li>
+      </ng-template>
+    </ul>
+    <hr>
+    <ul class="navbar-nav text-center">
+      <span *ngIf="auth.isAuthenticated(); then authenticatedBlockRight; else notAuthenticatedBlockRight"></span>
+      <ng-template #authenticatedBlockRight>
+        <li routerLinkActive="active" class="nav-item">
+            <a [routerLink]="['/settings']" class="nav-link"><i class="fa fa-cog"></i> Settings</a>
+        </li>
+        <span *ngIf="auth.isAdmin">
+          <li routerLinkActive="active" class="nav-item">
+              <a [routerLink]="['/admin']" class="nav-link"><i class="fa fa-lock"></i> Admin</a>
+          </li>
+        </span>
+        <li routerLinkActive="active" class="nav-item">
+          <a style="cursor: pointer;" class="nav-link" (click)="onSignout()"><i class="fa fa-sign-out"></i> Signout</a>
+        </li>
+      </ng-template>
+      <ng-template #notAuthenticatedBlockRight>
+        <li routerLinkActive="active" class="nav-item">
+            <a [routerLink]="['/signup']" class="nav-link"><i class="fa fa-user-plus"></i> Register</a>
+        </li>
+        <li routerLinkActive="active" class="nav-item">
+          <a [routerLink]="['/signin']" class="nav-link"><i class="fa fa-sign-in"></i> Signin</a>
+        </li>
+      </ng-template>
+    </ul>
+  </div>
+</nav>

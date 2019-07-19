@@ -1,0 +1,13 @@
+.footer {
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 50px;
+    background-color: #343a40;
+    color: whitesmoke;
+  }
+
+  footer a {
+    margin-right: 20px;
+    color: whitesmoke;
+  }

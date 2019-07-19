@@ -1,0 +1,21 @@
+    <!-- Header -->
+    <header class="masthead d-flex">
+        <div class="container text-center my-auto">
+          <h1>Conchboards</h1>
+          <h6>Discover, Create, and Share Soundboards!</h6>
+          <hr>
+          <p>Sign in or register for free to be able to create and favourite boards.</p>
+          <button [routerLink]="['/signin']" class="btn btn-primary btn-block">
+            <i class="fa fa-sign-in fa-2x"></i><div>Sign In</div>
+          </button>
+          <button [routerLink]="['/signup']" class="btn btn-primary btn-block">
+            <i class="fa fa-user-plus fa-2x"></i><div>Register</div>
+          </button>
+          <hr>
+          <p>Otherwise, you can browse and share existing boards, no account required.</p>
+          <button [routerLink]="['/soundboards']" class="btn btn-dark btn-block">
+            <i class="fa fa-eye fa-2x"></i><div>Find Boards</div>
+          </button>
+        </div>
+        <div class="overlay"></div>
+      </header>

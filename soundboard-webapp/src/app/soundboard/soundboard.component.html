@@ -1,0 +1,93 @@
+<div *ngIf="preview" class="modal-header">
+    <h4 class="modal-title">Preview</h4>
+    <button type="button" class="close" aria-label="Close" (click)="activeModal.dismiss('Cross click')">
+      <span aria-hidden="true">&times;</span>
+    </button>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+        <div class="dark-theme" align="center">
+            <mat-spinner *ngIf="fetching"></mat-spinner>
+        </div>
+      <!--> Delete Confirmation modal template </!-->
+      <ng-template #deleteModal let-c="close" let-d="dismiss">
+          <div class="modal-header">
+            <h4 class="modal-title">Are you sure you want to delete the soundboard {{soundboard.name}} ?</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" (click)="c('Delete')">Delete</button>
+            <button type="button" class="btn btn-outline-dark" (click)="c('Close')">Cancel</button>
+          </div>
+      </ng-template>
+      <!--> Report Confirmation modal template </!-->
+      <ng-template #reportModal let-c="close" let-d="dismiss">
+        <div class="modal-header">
+          <h4 class="modal-title">Clicking 'Report' will make the board unvisible to you in future searches. Clicking 'Block User' will block all content from this user.</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="c('Report')">Report</button>
+          <button type="button" class="btn btn-danger" (click)="c('Block')">Block User</button>
+          <button type="button" class="btn btn-outline-dark" (click)="c('Close')">Cancel</button>
+        </div>
+    </ng-template>
+      <div *ngIf="!fetching && soundboard">
+          <div id="bannerimage" [ngStyle]="{ 'background-image': 'url(' + getImageURL() + ')'}"></div>
+          <h1>{{soundboard.name}} 
+            <span class="spaced">
+                <button *ngIf="!this.favourited" type="button" class="btn btn-outline-dark" (click)="favourite()" [disabled]="preview">
+                    <i class="fa fa-heart" aria-hidden="true" *ngIf="!favouriting"></i><i class="fa fa-spinner fa-spin" *ngIf="favouriting"></i> Favourite
+                  </button>
+                  <button *ngIf="this.favourited" type="button" class="btn btn-dark" (click)="favourite()" [disabled]="preview">
+                    <i class="fa fa-heart" aria-hidden="true" *ngIf="!favouriting"></i><i class="fa fa-spinner fa-spin" *ngIf="favouriting"></i> Un-Favourite
+                  </button>
+                  <button *ngIf="auth.id === soundboard.creatorId || preview || auth.isAdmin" type="button" class="btn btn-danger" (click)="confirmDeleteSoundboard(deleteModal)" [disabled]="preview">
+                      <i class="fa fa-trash" aria-hidden="true" *ngIf="!deleting"></i><i class="fa fa-spinner fa-spin" *ngIf="deleting"></i> Delete
+                  </button>
+                  <button type="button" *ngIf="auth.id != soundboard.creatorId" class="btn btn-danger" (click)="confirmReportSoundboard(reportModal)" [disabled]="preview">
+                    <i class="fa fa-flag" aria-hidden="true" *ngIf="!reporting"></i><i class="fa fa-spinner fa-spin" *ngIf="reporting"></i> Report
+                </button>
+                </span>
+          </h1>
+          <p></p>
+          <div *ngIf="!preview">
+            <share-button [button]="'facebook'" ></share-button>
+            <share-button [button]="'twitter'" ></share-button>
+            <share-button [button]="'reddit'" ></share-button>
+            <share-button [button]="'copy'" (click)="reactToCopy()"></share-button>
+          </div>
+          <p></p>
+          <small class="text-muted">Created by {{soundboard.creatorUsername}} on {{soundboard.createdAt | date:'yyyy-MM-dd'}}</small>
+          <hr>
+          <p></p>
+          <div class="container-fluid">
+            <div class="row justify-content-center">
+              <button 
+                *ngFor="let sound of soundboard.soundFiles; let i = index" [id]="i"
+                type="button" class="btn btn-dark mx-auto my-2" (click)="playSound($event)"
+                style="min-width: 20em; max-width: 20rem;">
+                <i class="fa fa-play fa-2x" *ngIf="!buttonIsLoading[i]"></i><i class="fa fa-spinner fa-spin fa-2x" *ngIf="buttonIsLoading[i]"></i>
+                <p> </p> <div>{{sound.name}}</div>
+              </button>
+            </div>
+          </div>
+            <div *ngIf="!preview">
+              <hr>
+              <button class="btn btn-outline-secondary btn-block" type="button" (click)="onBackClicked()"><i class="fa fa-angle-left fa-2x"></i><div>Back</div></button>
+            </div>
+      </div>
+      <div *ngIf="!fetching && !soundboard">
+        <h3>Soundboard not found!</h3>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="preview" class="modal-footer">
+    <button type="button" class="btn btn-outline-dark" (click)="activeModal.close('Close')">Close</button>
+</div>

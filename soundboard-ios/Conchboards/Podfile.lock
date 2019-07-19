@@ -1,0 +1,33 @@
+PODS:
+  - Alamofire (4.7.0)
+  - FontAwesome.swift (1.3.2)
+  - Nuke (6.1)
+  - RxSwift (4.1.2)
+  - SVProgressHUD (2.2.5)
+  - SwiftKeychainWrapper (3.0.1)
+  - SwiftyJSON (4.0.0)
+  - UIScrollView-InfiniteScroll (1.0.2)
+
+DEPENDENCIES:
+  - Alamofire
+  - FontAwesome.swift
+  - Nuke
+  - RxSwift (~> 4.1)
+  - SVProgressHUD
+  - SwiftKeychainWrapper
+  - SwiftyJSON
+  - UIScrollView-InfiniteScroll (~> 1.0.0)
+
+SPEC CHECKSUMS:
+  Alamofire: 907e0a98eb68cdb7f9d1f541a563d6ac5dc77b25
+  FontAwesome.swift: b4e4c8ccbbecb12f9b592bc533ff237af3706667
+  Nuke: 0513c8d156bd9a2adb15db70622c3527f44542c5
+  RxSwift: e49536837d9901277638493ea537394d4b55f570
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftKeychainWrapper: 38952a3636320ae61bad3513cadd870929de7a4a
+  SwiftyJSON: 070dabdcb1beb81b247c65ffa3a79dbbfb3b48aa
+  UIScrollView-InfiniteScroll: c132d6d5851daff229ab4a1060ccf70a05a051c9
+
+PODFILE CHECKSUM: 289b7aac26579738d506d00240a0c29ace67e691
+
+COCOAPODS: 1.4.0
