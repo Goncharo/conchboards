@@ -15,7 +15,7 @@ Open endpoints require no Authentication token.
 * [Signup](auth/signup.md) : `POST /signup`
 * [Verify](auth/verify.md) : `POST /verify/:token`
 * [Signin](auth/signin.md) : `POST /signin`
-* [Check If Username Exists](auth/check-username.md) : `get /usernameExists/:username`
+* [Check If Username Exists](auth/check-username.md) : `GET /usernameExists/:username`
 
 ### User Account Routes
 
