@@ -31,7 +31,7 @@
     "@ng-bootstrap/ng-bootstrap": "^3.1.0",
     "@ngx-share/button": "^6.0.1",
     "@ngx-share/core": "^6.0.1",
-    "bootstrap": "^4.0.0",
+    "bootstrap": "^4.3.1",
     "core-js": "^2.4.1",
     "file-type": "^10.2.0",
     "font-awesome": "^4.7.0",
